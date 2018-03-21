@@ -11,7 +11,9 @@ import cn.migu.hasika.database.annotation.DatabaseField;
 import cn.migu.hasika.database.annotation.DatabaseTable;
 
 /**
- * Created by hasika on 2018/3/14.
+ * Author: hasika
+ * Time: 2018/3/21
+ * Any questions can send email to lbhasika@gmail.com
  */
 
 @DatabaseTable("files")

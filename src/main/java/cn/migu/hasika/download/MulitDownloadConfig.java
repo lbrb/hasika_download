@@ -5,7 +5,9 @@ import android.os.Environment;
 import java.io.File;
 
 /**
- * Created by hasika on 2018/3/15.
+ * Author: hasika
+ * Time: 2018/3/21
+ * Any questions can send email to lbhasika@gmail.com
  */
 
 public final class MulitDownloadConfig {

@@ -7,7 +7,9 @@ import java.util.List;
 import cn.migu.hasika.download.database.FileEntry;
 
 /**
- * Created by hasika on 2018/3/15.
+ * Author: hasika
+ * Time: 2018/3/21
+ * Any questions can send email to lbhasika@gmail.com
  */
 
 public class DatabaseTask {

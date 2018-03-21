@@ -11,16 +11,13 @@ import cn.migu.hasika.download.task.DatabaseTask;
 import cn.migu.hasika.download.task.DownloadTask;
 
 /**
- * Created by hasika on 2018/3/15.
- *
  * download file from net
- *
  * support multi-thread multi-task partial-download
- *
  * can config by {@link MulitDownloadConfig}
  *
- * good luck
- *
+ * Author: hasika
+ * Time: 2018/3/21
+ * Any questions can send email to lbhasika@gmail.com
  */
 
 public class MultiDownloadManager {
