@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-import com.migu.data.android.logbase.util.LogBaseLog;
 
 /**
  * Author: hasika
@@ -41,7 +40,7 @@ public class MultiNetworkChangeReceiver extends BroadcastReceiver {
                     }
                 }
             } catch (Exception e) {
-                LogBaseLog.w(e);
+                e.printStackTrace();
             }
         }
     }
