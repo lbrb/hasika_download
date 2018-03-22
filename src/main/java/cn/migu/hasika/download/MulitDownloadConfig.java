@@ -1,9 +1,5 @@
 package cn.migu.hasika.download;
 
-import android.os.Environment;
-
-import java.io.File;
-
 /**
  * Author: hasika
  * Time: 2018/3/21
@@ -11,18 +7,6 @@ import java.io.File;
  */
 
 public final class MulitDownloadConfig {
-    private static final String relative = "cmgame"+ File.separator+"plugin"+ File.separator+"apk";
-
-    static {
-        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
-            DOWNLOAD_DIR = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + relative;
-        } else {
-            DOWNLOAD_DIR = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + relative;
-        }
-    }
-
-    public static final String DOWNLOAD_DIR;
-
     /**
      * the timeout for link
      */

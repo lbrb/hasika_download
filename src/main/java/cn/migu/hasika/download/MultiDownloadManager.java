@@ -83,6 +83,24 @@ public class MultiDownloadManager {
         }
     }
 
+    public void getFilePathByPackageName(final String packageName, final MultiDownloadListener listener){
+        getFilePathByPackageNameLocked(packageName, listener);
+    }
+
+    private void getFilePathByPackageNameLocked(final String packageName, final MultiDownloadListener listener){
+        mExecutorServices.execute(new Runnable() {
+            @Override
+            public void run() {
+                String path = DatabaseTask.getFilePathByPackageNameAndFinished(mContext, packageName);
+
+                if (TextUtils.isEmpty(path)) {
+                    listener.onError(packageName, "not exist in sd");
+                } else {
+                    listener.onCompleted(packageName, path);
+                }
+            }
+        });
+    }
 
     /**
      * cancelAll downloadTask if downloadTask is running

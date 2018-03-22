@@ -1,6 +1,7 @@
 package cn.migu.hasika.download.task;
 
 import android.content.Context;
+import android.os.Environment;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -48,17 +49,37 @@ public class DownloadTask implements ConnectThread.ConnectListener, DownloadThre
         mContext = context;
         mExecutorService = executorService;
         mUrl = url;
-        mFilePath = MulitDownloadConfig.DOWNLOAD_DIR+ File.separator+getFileNameFromUrl(url);
+        mFilePath = getFilePathFromUrl(url);
         mFile = new File(mFilePath);
         mListener = listener;
         mState = DOWNLOAD_TASK_STATE_NEW;
     }
 
-    private String getFileNameFromUrl(String url){
-        int lastIndex = url.lastIndexOf("/");
-        String fileName = url.substring(lastIndex+1);
+    private String getFilePathFromUrl(String url){
+        String dirPath;
+        String relative = "cmgame"+ File.separator+"plugin"+ File.separator+"apk";
+        if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
+            dirPath = Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator + relative;
+        } else {
+            dirPath = mContext.getFilesDir() + File.separator + relative;
+        }
 
-        return fileName;
+        File dirFile = new File(dirPath);
+
+        if (!dirFile.canWrite()){
+            dirPath = mContext.getFilesDir() + File.separator + relative;
+        }
+
+        dirFile = new File(dirPath);
+
+        if (!dirFile.exists()){
+            boolean ret = dirFile.mkdirs();
+        }
+
+        int lastIndex = url.lastIndexOf("/");
+        String filePath = dirPath + File.separator + url.substring(lastIndex+1);
+
+        return filePath;
     }
 
     public void start(){

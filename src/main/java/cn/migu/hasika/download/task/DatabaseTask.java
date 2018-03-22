@@ -26,4 +26,17 @@ public class DatabaseTask {
 
         return null;
     }
+
+    public static String getFilePathByPackageNameAndFinished(Context context, String packageName){
+        String isFinishedStr = "1";
+        List<FileEntry> list = FileEntry.queryAllBySelection(context, FileEntry.class, "_package_name = ? and _is_finished = ?", new String[]{packageName, isFinishedStr});
+        if (list != null && list.size()>0){
+            FileEntry fileEntry = list.get(0);
+            if (fileEntry != null){
+                return fileEntry.getPath();
+            }
+        }
+
+        return null;
+    }
 }
