@@ -3,7 +3,6 @@ package cn.migu.hasika.download.database;
 import android.content.Context;
 
 import java.util.HashMap;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 import cn.migu.hasika.database.DatabaseColumnInfo;
 import cn.migu.hasika.database.DatabaseEntry;
@@ -51,6 +50,9 @@ public class FileEntry extends DatabaseEntry {
 
     @DatabaseField("_is_support_range")
     private String isSupportRange;
+
+    @DatabaseField("_version")
+    private String version;
 
     @DatabaseField(value = "_range", type = DatabaseColumnInfo.ColumnTypeConstant.HASH_MAP)
     private HashMap<Integer, Long> range;
@@ -125,5 +127,13 @@ public class FileEntry extends DatabaseEntry {
 
     public void setRange(HashMap<Integer, Long> hashMap){
         range = hashMap;
+    }
+
+    public String getVersion() {
+        return version;
+    }
+
+    public void setVersion(String version) {
+        this.version = version;
     }
 }

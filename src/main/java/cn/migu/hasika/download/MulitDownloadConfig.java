@@ -11,7 +11,7 @@ import java.io.File;
  */
 
 public final class MulitDownloadConfig {
-    private static final String relative = "cmgame"+ File.separator+"plugin"+File.separator+"apk";
+    private static final String relative = "cmgame"+ File.separator+"plugin"+ File.separator+"apk";
 
     static {
         if (Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState())) {
@@ -37,5 +37,11 @@ public final class MulitDownloadConfig {
      * the num of thread to download
      */
     public static final int MULTI_DOWNLOAD_THREAD_NUM = 2;
+
+    /**
+     * if true, only wifi status can download file.
+     * else download file ignore net type.
+     */
+    public static final boolean DOWNLOAD_ONLY_WIFI = true;
 
 }

@@ -24,7 +24,7 @@ public class DownloadTask implements ConnectThread.ConnectListener, DownloadThre
 
     private Context mContext;
     private String mUrl;
-    private MultiDownloadManager.DownloadListener mListener;
+    private MultiDownloadManager.MultiDownloadListener mListener;
     private FileEntry mFileEntry;
     private ConnectThread mConnectThread;
     private List<DownloadThread> mDownloadThreads = new ArrayList<>();
@@ -44,7 +44,7 @@ public class DownloadTask implements ConnectThread.ConnectListener, DownloadThre
     public static final int DOWNLOAD_TASK_STATE_PAUSE = 4;
     public static final int DOWNLOAD_TASK_STATE_CANCEL = 5;
 
-    public DownloadTask(Context context, ExecutorService executorService, String url, MultiDownloadManager.DownloadListener listener){
+    public DownloadTask(Context context, ExecutorService executorService, String url, MultiDownloadManager.MultiDownloadListener listener){
         mContext = context;
         mExecutorService = executorService;
         mUrl = url;
@@ -127,8 +127,8 @@ public class DownloadTask implements ConnectThread.ConnectListener, DownloadThre
         mExecutorService.execute(downloadThread);
     }
 
-    public void cancel(){
-        mCancelReason = "active cancelAll";
+    public void cancel(String reason){
+        mCancelReason = reason;
         if (mState <= DOWNLOAD_TASK_STATE_RUNNING){
             for (DownloadThread downladThread :
                     mDownloadThreads) {
@@ -137,14 +137,18 @@ public class DownloadTask implements ConnectThread.ConnectListener, DownloadThre
         }
     }
 
-    public void pause(){
-        mPauseReason = "active pauseAll";
+    public void pause(String reason){
+        mPauseReason = reason;
         if (mFileEntry != null && "1".equals(mFileEntry.isSupportRange())&&mState <= DOWNLOAD_TASK_STATE_RUNNING){
             for (DownloadThread downloadThread :
                     mDownloadThreads) {
                 downloadThread.pause();
             }
         }
+    }
+
+    public void resume(){
+        startLocked();
     }
 
     /*****************connect listener********************/
